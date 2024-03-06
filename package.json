@@ -1,0 +1,63 @@
+{
+    "name": "linhieng-misc",
+    "publisher": "linhieng",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.87.0"
+    },
+    "type": "module",
+    "main": "./src/extension.js",
+    "displayName": "__ linhieng 自用扩展 - 大杂烩",
+    "description": "个人使用的 vscode 扩展，一些零零碎碎的内容",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Linhieng/vs-misc.git"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+    "scripts": {
+        "package": "node build.js && npm run bundle && cd dist && npx @vscode/vsce package",
+        "publish": "npm run package && cd dist && npx @vscode/vsce publish",
+        "bundle": "node esbuild.config.js",
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src/**/*.ts ",
+        "lint:fix": "eslint src/**/*.ts --fix",
+        "test": "vscode-test"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "misc.pasteLink",
+                "title": "Paste Link",
+                "category": "linhieng-misc"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "misc.pasteLink",
+                "key": "Ctrl+K Ctrl+V",
+                "when": "editorTextFocus && editorLangId == markdown"
+            }
+        ]
+    },
+    "devDependencies": {
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@types/vscode": "^1.87.0",
+        "@vscode/test-cli": "^0.0.6",
+        "@vscode/test-electron": "^2.3.9",
+        "esbuild": "^0.20.1",
+        "eslint": "^8.57.0",
+        "globals": "^14.0.0",
+        "typescript": "^5.3.3",
+        "typescript-eslint": "^7.1.1"
+    }
+}
