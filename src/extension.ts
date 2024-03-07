@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { miscPastelink } from './command.ts'
+import { miscPastelink } from './command'
 
 export function activate(context: vscode.ExtensionContext) {
 

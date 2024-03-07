@@ -6,7 +6,7 @@
         "vscode": "^1.87.0"
     },
     "type": "module",
-    "main": "./src/extension.js",
+    "main": "./out/extension.js",
     "displayName": "__ linhieng 自用扩展 - 大杂烩",
     "description": "个人使用的 vscode 扩展，一些零零碎碎的内容",
     "license": "MIT",
