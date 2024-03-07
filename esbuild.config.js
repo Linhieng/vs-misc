@@ -1,6 +1,7 @@
 // @ts-check
 /* eslint-disable
-        @typescript-eslint/no-unsafe-member-access
+        @typescript-eslint/no-unsafe-member-access,
+        @typescript-eslint/no-unsafe-call
 */
 import { build } from 'esbuild'
 import pkg from './package.json' assert {type: 'json'}
