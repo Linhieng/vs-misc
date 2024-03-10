@@ -6,4 +6,5 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+- 0.0.2 添加功能：多行光标时支持插入连续数字
+- 0.0.1 添加功能：粘贴时格式化为 [$0]: content

@@ -1,7 +1,7 @@
 {
     "name": "linhieng-misc",
     "publisher": "linhieng",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.87.0"
     },
@@ -37,6 +37,11 @@
             {
                 "command": "misc.pasteLink",
                 "title": "Paste Link",
+                "category": "linhieng-misc"
+            },
+            {
+                "command": "misc.insertNumber",
+                "title": "Insert orderly number",
                 "category": "linhieng-misc"
             }
         ],
