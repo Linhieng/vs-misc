@@ -1,20 +1,35 @@
 import * as vscode from 'vscode'
 
 /**
- * TODO: 替换文本, 考虑方向, 支持配置 2n+1 等内容
- * 对当前的多行光标，插入连续的数字
+ * 根据 action，在 selection 处插入/替换文本内容
+ * @param editBuilder
+ * @param selection
+ * @param txtContent
+ * @param action
+ */
+function changeCursorText(editBuilder: vscode.TextEditorEdit, selection: vscode.Selection, txtContent: string, action: 'insert' | 'replace') {
+    if (action === 'insert') {
+        editBuilder.insert(selection.active, txtContent)
+    } else {
+        editBuilder.replace(selection, txtContent)
+    }
+}
+
+/**
+ * TODO: 考虑方向, 支持配置 2n+1 等内容
+ * 对当前的多行光标，插入/替换连续的数字
  * @param editor
  * @param action
  */
-function insertNum(editor: vscode.TextEditor, action: 'insert') {
+function insertNum(editor: vscode.TextEditor, action: 'insert' | 'replace') {
     // 注意多行编辑时，也需要在 editor.edit 中一次性处理完！
     void editor.edit(editBuilder => {
         // 获取当前编辑器中的多个光标位置
         const selections = editor.selections
         let count = 1
         selections.forEach(selection => {
-            // 在光标位置插入连续数字
-            editBuilder[action](selection.anchor, count.toString())
+            // 在光标位置插入/替换连续数字
+            changeCursorText(editBuilder, selection, count.toString(), action)
             count++
         })
     })
@@ -29,6 +44,8 @@ export function miscInsertNum() {
     if (editor) {
         if (editor.selection.isEmpty) {
             insertNum(editor, 'insert')
+        } else {
+            insertNum(editor, 'replace')
         }
     }
 }
