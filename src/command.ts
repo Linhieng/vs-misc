@@ -16,7 +16,7 @@ function changeCursorText(editBuilder: vscode.TextEditorEdit, selection: vscode.
 }
 
 /**
- * TODO: 考虑方向, 支持配置 2n+1 等内容
+ * TODO: 支持配置 2n+1 等内容
  * 对当前的多行光标，插入/替换连续的数字
  * @param editor
  * @param action
@@ -26,11 +26,25 @@ function insertNum(editor: vscode.TextEditor, action: 'insert' | 'replace') {
     void editor.edit(editBuilder => {
         // 获取当前编辑器中的多个光标位置
         const selections = editor.selections
+        const len = selections.length
+        if (len < 2) {
+            // 单行编辑时无需插入
+            return
+        }
+        const s1 = selections[0].start.line
+        const s2 = selections[1].start.line
         let count = 1
+        let addCount = () => count++
+        // 正常使用时，通常是一个方向到底的，如果用户非要一个一个光标地选中，那么插入的数字肯定不是连续的
+        // 虽然也可以通过遍历 selections 来获取正确的顺序，但目前并不打算提供这个功能。
+        if (s2 < s1) {
+            count = len
+            addCount = () => count--
+        }
         selections.forEach(selection => {
             // 在光标位置插入/替换连续数字
             changeCursorText(editBuilder, selection, count.toString(), action)
-            count++
+            addCount()
         })
     })
 }
