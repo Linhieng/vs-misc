@@ -1,7 +1,7 @@
 {
     "name": "linhieng-misc",
     "publisher": "linhieng",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.87.0"
     },
@@ -43,6 +43,11 @@
                 "command": "misc.insertNumber",
                 "title": "Insert orderly number",
                 "category": "linhieng-misc"
+            },
+            {
+                "command": "misc.nextLinewithSemicolon",
+                "title": "Insert a Semicolon in the end of current line and go next line",
+                "category": "linhieng-misc"
             }
         ],
         "keybindings": [
@@ -50,6 +55,11 @@
                 "command": "misc.pasteLink",
                 "key": "Ctrl+K Ctrl+V",
                 "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "command": "misc.nextLinewithSemicolon",
+                "key": "Alt+Enter",
+                "when": "editorTextFocus && !editorReadonly && (editorLangId == rust || editorLangId == c)"
             }
         ]
     },

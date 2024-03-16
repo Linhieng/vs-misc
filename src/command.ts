@@ -1,5 +1,7 @@
 import * as vscode from 'vscode'
 
+
+
 /**
  * 根据 action，在 selection 处插入/替换文本内容
  * @param editBuilder
@@ -94,4 +96,41 @@ export async function miscPastelink() {
     // 设置新的光标位置 —— 相对于 position 向右偏移 1 字符
     const newPosition = position.translate(0, 1)
     editor.selection = new vscode.Selection(newPosition, newPosition)
+}
+
+/**
+ * 往当前光标所在行的行尾插入分号，并跳到下一行。如果已存在分号的话则忽略。
+ * 注意：该函数并不会判断语法是否正确，仅仅只是提供一个快捷操作
+ *
+ * @returns
+ */
+export async function miscNextLinewithSemicolon() {
+    // 获取当前编辑器
+    const editor = vscode.window.activeTextEditor
+    if (!editor) {
+        await vscode.window.showInformationMessage('Not find active text editor.')
+        return
+    }
+
+    // 获取当前光标位置
+    const position = editor.selection.active
+    const lineNumber = editor.selection.active.line
+    const lineContent = editor.document.lineAt(lineNumber).text
+
+    if (lineContent.endsWith(';')) {
+        // 调用系统默认命令，直接调跳到下一行
+        await vscode.commands.executeCommand('editor.action.insertLineAfter')
+        return
+    }
+
+    // 创建一个位置，表示当前行行尾
+    const lineEndPosition = position.translate({
+        characterDelta: lineContent.length - position.character + 1,
+    })
+
+    // 往行尾插入分号
+    await editor.edit(editBuilder => {
+        editBuilder.insert(lineEndPosition, ';')
+    })
+    await vscode.commands.executeCommand('editor.action.insertLineAfter')
 }

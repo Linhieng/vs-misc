@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { miscPastelink, miscInsertNum } from './command'
+import { miscPastelink, miscInsertNum, miscNextLinewithSemicolon } from './command'
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -14,6 +14,12 @@ export function activate(context: vscode.ExtensionContext) {
             'misc.insertNumber',
             () => {
                 miscInsertNum()
+            },
+        ),
+        vscode.commands.registerCommand(
+            'misc.nextLinewithSemicolon',
+            async () => {
+                await miscNextLinewithSemicolon()
             },
         ),
     ]
