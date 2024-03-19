@@ -10,6 +10,7 @@
 - [ ] md 粘贴文件时，支持指定工作区中的目录，支持重命名（可以通过先在 editor 中写名称，然后选中粘贴的方式实现。还有提供图片预览功能。
 - [ ] 实现 editor.autoSurround 支持像 editor.unicodeHighlight.nonBasicASCII 一样自定义闭合符号。也就是对曾经的第一个插件（auto-mark）补充
 - [ ] 根据 sql 脚本自动生成 schema.d.ts 类型声明文件，主要是提供注释，至于类型，可以通过自己定义映射来解决
+- [ ] md 渲染时支持 vscode 配置项。就像 release web 中的一样。参见 [issue#207973]
 
 
 复刻
@@ -24,7 +25,9 @@
 - [ ] 格式化：表格对齐格式化时支持中英混杂，原理：借助等宽字体和全角空格
 - [ ] 格式化：sql 格式化，，参考 datagrip，但比他好 —— 将所有字段对齐
 - [ ] 表格对齐：通过使用全角空格的方式，一劳永逸地解决所有自己对齐问题！
+- [ ] 开发 json 格式化插件，只需要在 vscode 配置文件中自动添加尾随逗号即可，这是目前其他插件没有提供的功能
 
 
 [run on save]: https://github.com/emeraldwalk/vscode-runonsave.git
 [copy-path-relative-posix]: https://github.com/bpasero/copy-path-relative-posix
+[issue#207973]: https://github.com/microsoft/vscode/issues/207973
