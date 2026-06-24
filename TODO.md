@@ -1,5 +1,13 @@
 # 插件开发 TODO
 
+这里临时放置一下和 vscode 相关的 todo
+- vscode 中使用 http 文件测试（像 idea 一样）
+- vscode 的 UI state 
+- vue+ts+eslint 配置（扁平）
+- vscode 插件：[vscode 扩展开发参考扩展](https://github.com/bpasero/copy-path-relative-posix)
+
+之前的内容
+
 - [ ] 参考 editor.action.trimTrailingWhitespace 命令，实现自动删除 * TODO: 自动删除尾随空格，可参考
 - [ ] 上下移动光标时，若有按下 bar 按键，则自动添加空格；可选项，若有按下 foo 按键，则添加空格时，使用全角空格来自适应全角字符
 - [ ] 粘贴 url 时，自动识别 url 中的最后一个名称，供用户替换 [${1: xxx}]: url。
